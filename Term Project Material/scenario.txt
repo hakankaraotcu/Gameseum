@@ -1,0 +1,11 @@
+Jonathan (22) wants to play a new video game that came out last week. But before buying it, he wants to know what does his
+friends think about it. He opens the app and sign in via his e-mail address. Now he has different options in order to reach
+the reviews of his friends about the game; the first option is to find the game in the main page and after selecting the game
+he can reach the reviews made from his friends.
+The second option is to search the name of the game from the search bar and reach again the reviews from there.
+The third option is to search the name of a specific friend from his friend's list, and after selecting the profile of the 
+friend, he can reach the review of that game (if the friend has reviewed it).
+If he decide to buy the game after he read the reviews of his friends, he can add the game in his "wish list" where he can
+keep track of the games that he wants to play, but didn't play yet.
+After playing the game he can add it to his "game's list" in his profile and add a review about it, so that his friends can
+read the review and decide if the game is worth it to play.
