@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings"
+        android:title=""
+        android:id="@+id/settings_button">
+        <menu>
+            <item
+                android:id="@+id/settings_avatar"
+                android:title="Change Avatar"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/settings_password"
+                android:title="Change Password"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/settings_darkMode"
+                android:title="Dark Mode"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/settings_logOut"
+                android:title="Logout"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+</menu>
