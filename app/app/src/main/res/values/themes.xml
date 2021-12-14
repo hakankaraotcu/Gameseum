@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:actionOverflowButtonStyle">@style/SettingsIcon</item>
     </style>
 
     <style name="TitleBarTextAppearance" parent="android:TextAppearance">
@@ -19,5 +20,9 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SettingsIcon" parent="android:Widget.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_settings</item>
     </style>
 </resources>

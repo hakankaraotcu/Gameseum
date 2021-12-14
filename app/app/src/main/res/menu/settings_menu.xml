@@ -3,27 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_settings"
-        android:title=""
-        android:id="@+id/settings_button">
-        <menu>
-            <item
-                android:id="@+id/settings_avatar"
-                android:title="Change Avatar"
-                app:showAsAction="never"/>
-            <item
-                android:id="@+id/settings_password"
-                android:title="Change Password"
-                app:showAsAction="never"/>
-            <item
-                android:id="@+id/settings_darkMode"
-                android:title="Dark Mode"
-                app:showAsAction="never"/>
-            <item
-                android:id="@+id/settings_logOut"
-                android:title="Logout"
-                app:showAsAction="never"/>
-        </menu>
-    </item>
+        android:id="@+id/settings_avatar"
+        android:title="Change Avatar"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/settings_password"
+        android:title="Change Password"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/settings_darkMode"
+        android:title="Dark Mode"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/settings_logOut"
+        android:title="Logout"
+        app:showAsAction="never" />
+
 </menu>

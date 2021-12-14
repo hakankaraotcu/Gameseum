@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 public class AvatarFragment extends Fragment {
 
     private Toolbar toolbar;
-    private TextView page_name;
     private ImageButton backButton;
 
     ProfileFragment profileFragment;
@@ -42,9 +40,7 @@ public class AvatarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_avatar, container, false);
-
         toolbar = getActivity().findViewById(R.id.toolbar);
-        page_name = getActivity().findViewById(R.id.bar_layout_pagename);
         backButton = getActivity().findViewById(R.id.bar_layout_backButton);
 
         return view;
@@ -53,12 +49,18 @@ public class AvatarFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        page_name.setText("AVATAR");
-        backButton.setVisibility(View.VISIBLE);
+        for (int i = 1; i < toolbar.getChildCount() - 1; i++) {
+            if (toolbar.getChildAt(i).getVisibility() == View.VISIBLE) {
+                Log.d("page number", String.valueOf(i));
+                toolbar.getChildAt(i).setVisibility(View.GONE);
+            }
+        }
+        toolbar.findViewById(R.id.avatar_bar).setVisibility(View.VISIBLE);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout,profileFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, profileFragment).commit();
             }
         });
         gridView = view.findViewById(R.id.avatar_gridView);
@@ -69,9 +71,9 @@ public class AvatarFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle args = new Bundle();
-                args.putInt("image",images[i]);
+                args.putInt("image", images[i]);
                 profileFragment.setArguments(args);
-                getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout,profileFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, profileFragment).commit();
             }
         });
 
