@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/ic_back.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/avatars.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/bar_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_avatar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/switch_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/titles.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/menu/settings_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/desktop/Gameseum/app/app/src/main/res/drawable/ic_add.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/desktop/Gameseum/app/app/src/main/res/drawable/ic_avatar1_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/desktop/Gameseum/app/app/src/main/res/drawable/ic_back.xml" value="0.2703125" />

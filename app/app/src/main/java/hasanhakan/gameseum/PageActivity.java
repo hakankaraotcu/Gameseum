@@ -27,6 +27,15 @@ public class PageActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        if(integerDeque.peek() != bottomNavigationView.getSelectedItemId()){
+            integerDeque.push(bottomNavigationView.getSelectedItemId());
+        }
+        loadFragment(getFragment(bottomNavigationView.getSelectedItemId()));
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);

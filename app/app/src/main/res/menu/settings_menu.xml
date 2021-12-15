@@ -4,20 +4,16 @@
 
     <item
         android:id="@+id/settings_avatar"
-        android:title="Change Avatar"
-        app:showAsAction="never" />
+        android:title="Change Avatar" />
     <item
         android:id="@+id/settings_password"
-        android:title="Change Password"
-        app:showAsAction="never" />
+        android:title="Change Password" />
     <item
         android:id="@+id/settings_darkMode"
         android:title="Dark Mode"
-        app:actionLayout="@layout/switch_item"
-        app:showAsAction="never"/>
+        app:actionLayout="@layout/switch_item" />
     <item
         android:id="@+id/settings_logOut"
-        android:title="Logout"
-        app:showAsAction="never" />
+        android:title="Logout" />
 
 </menu>

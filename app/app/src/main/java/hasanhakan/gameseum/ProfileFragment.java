@@ -1,9 +1,13 @@
 package hasanhakan.gameseum;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -15,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -28,7 +33,10 @@ public class ProfileFragment extends Fragment {
     private Toolbar toolbar;
     private ImageButton settingsButton;
     private CircularImageView profile_image;
-    int image;
+    private SwitchCompat switch_theme;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private int image;
     private ListView listView;
     private ProfileListAdapter adapter;
     private String[] titles = {"Played List", "Wishlist", "Reviews", "Game List", "Friends"};
@@ -38,12 +46,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
         drawerLayout = view.findViewById(R.id.profile_drawerLayout);
         navigationView = view.findViewById(R.id.profile_navigationView);
         toolbar = getActivity().findViewById(R.id.toolbar);
         settingsButton = getActivity().findViewById(R.id.bar_layout_settingsButton);
         profile_image = view.findViewById(R.id.profile_circularImage);
+
+        preferences = getActivity().getSharedPreferences("hasanhakan.gameseum", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         if (getArguments() != null) {
             image = getArguments().getInt("image");
@@ -64,6 +76,23 @@ public class ProfileFragment extends Fragment {
         }
         toolbar.findViewById(R.id.profile_bar).setVisibility(View.VISIBLE);
 
+        switch_theme = (SwitchCompat) navigationView.getMenu().findItem(R.id.settings_darkMode).getActionView();
+
+        switch_theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (!isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putBoolean("isDarkModeOn", false);
+                    editor.apply();
+                } else if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putBoolean("isDarkModeOn", true);
+                    editor.apply();
+                }
+            }
+        });
+
         listView = view.findViewById(R.id.profile_listView);
         adapter = new ProfileListAdapter(titles, count, getContext());
         listView.setAdapter(adapter);
@@ -71,7 +100,7 @@ public class ProfileFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(titles[i], "çalışıyor");
+                Log.d(titles[i], "working");
             }
         });
 
@@ -91,7 +120,6 @@ public class ProfileFragment extends Fragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings_avatar:
-                        Log.d("avatars", "1");
                         AvatarFragment avatarFragment = new AvatarFragment();
                         getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, avatarFragment).addToBackStack(null).commit();
                         break;
@@ -99,7 +127,16 @@ public class ProfileFragment extends Fragment {
                         Log.d("password", "2");
                         break;
                     case R.id.settings_darkMode:
-                        Log.d("darkmode", "3");
+                        switch_theme.setChecked(!switch_theme.isChecked());
+                        if (switch_theme.isChecked()) {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            editor.putBoolean("isDarkModeOn", true);
+                            editor.apply();
+                        } else {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                            editor.putBoolean("isDarkModeOn", false);
+                            editor.apply();
+                        }
                         break;
                     case R.id.settings_logOut:
                         Log.d("logout", "4");
