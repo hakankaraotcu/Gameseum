@@ -3,16 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/border.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/ic_back.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/item_selector.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/avatar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/avatar_image.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/avatars.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/bar_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/border.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_avatar.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_game_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_games.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_item_list_dialog_list_dialog.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_item_list_dialog_list_dialog_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_reviews.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/game.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/game_image.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/gamelist_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/row.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/row_image.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/switch_item.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/titles.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/menu/gamelist_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/menu/settings_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/desktop/Gameseum/app/app/src/main/res/drawable/ic_add.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/desktop/Gameseum/app/app/src/main/res/drawable/ic_avatar1_background.xml" value="0.2703125" />

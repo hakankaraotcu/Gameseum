@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
         boolean isDarkModeOn = preferences.getBoolean("isDarkModeOn", false);
 
-        if(isDarkModeOn){
+        if (isDarkModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }else{
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 

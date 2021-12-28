@@ -5,25 +5,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
+import java.util.ArrayList;
 
-public class AvatarAdapter extends BaseAdapter {
-    private CircularImageView circularImageView;
-    private int[] images;
+public class GamesAdapter extends BaseAdapter {
+    private ImageView imageView;
+    private ArrayList<Game> games;
     private Context context;
 
-    public AvatarAdapter(int[] images, Context context) {
-        this.images = images;
+    public GamesAdapter(ArrayList<Game> games, Context context) {
+        this.games = games;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return games.size();
     }
 
     @Override
@@ -40,9 +41,9 @@ public class AvatarAdapter extends BaseAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.avatar_image, null);
-        circularImageView = view.findViewById(R.id.avatar_circularImage);
-        circularImageView.setImageResource(images[position]);
+        View view = layoutInflater.inflate(R.layout.game_image,null);
+        imageView = view.findViewById(R.id.game_image);
+        imageView.setImageResource(games.get(position).getImage());
         return view;
     }
 }

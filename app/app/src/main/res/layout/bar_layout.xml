@@ -11,15 +11,15 @@
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="15dp"
             android:fontFamily="@font/awesomepossumshinedemo"
-            android:text="SEARCH"
+            android:paddingRight="15dp"
+            android:text="Search"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -35,9 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="15dp"
             android:fontFamily="@font/awesomepossumshinedemo"
-            android:text="GAMES"
+            android:paddingRight="15dp"
+            android:text="Games"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -53,9 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="15dp"
             android:fontFamily="@font/awesomepossumshinedemo"
-            android:text="REVIEWS"
+            android:paddingRight="15dp"
+            android:text="Reviews"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -71,50 +71,72 @@
             android:id="@+id/bar_layout_settingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_settings"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:visibility="visible"/>
+            android:src="@drawable/ic_settings"
+            android:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="15dp"
             android:fontFamily="@font/awesomepossumshinedemo"
-            android:text="USERNAME"
+            android:paddingRight="15dp"
+            android:text="Username"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/avatar_bar"
+        android:id="@+id/subPage_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="gone">
 
         <TextView
+            android:id="@+id/pageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="15dp"
             android:fontFamily="@font/awesomepossumshinedemo"
-            android:text="AVATAR"
+            android:paddingRight="15dp"
             android:textColor="@color/textColor"
             android:textSize="25sp"
             android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_search"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_createButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_create"
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/bar_layout_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
             android:background="@android:color/transparent"
-            android:visibility="visible"/>
+            android:src="@drawable/ic_back"
+            android:visibility="visible" />
     </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>

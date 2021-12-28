@@ -28,7 +28,7 @@ public class PageActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if(integerDeque.peek() != bottomNavigationView.getSelectedItemId()){
+        if (integerDeque.peek() != bottomNavigationView.getSelectedItemId()) {
             integerDeque.push(bottomNavigationView.getSelectedItemId());
         }
         loadFragment(getFragment(bottomNavigationView.getSelectedItemId()));
@@ -42,7 +42,6 @@ public class PageActivity extends AppCompatActivity {
         init();
         setSupportActionBar(toolbar);
         integerDeque.push(R.id.nav_home);
-        loadFragment(new HomeFragment());
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

@@ -36,7 +36,7 @@ public class ProfileListAdapter extends ArrayAdapter<String> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.titles, null);
 
-        if(view != null){
+        if (view != null) {
             title = view.findViewById(R.id.profile_listTitle);
             count = view.findViewById(R.id.profile_listTitleCount);
 

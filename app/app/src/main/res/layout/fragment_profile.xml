@@ -24,8 +24,8 @@
                 android:id="@+id/profile_circularImage"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:civ_border_color="@color/black"
-                android:src="@drawable/ic_profile" />
+                android:src="@drawable/ic_profile"
+                app:civ_border_color="@color/black" />
 
         </LinearLayout>
 
@@ -33,7 +33,7 @@
             android:id="@+id/profile_listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@android:color/transparent"/>
+            android:divider="@android:color/transparent" />
 
     </LinearLayout>
 
@@ -42,6 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        app:menu="@menu/settings_menu"/>
+        app:menu="@menu/settings_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

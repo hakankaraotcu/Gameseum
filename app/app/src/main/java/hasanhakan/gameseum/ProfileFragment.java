@@ -51,6 +51,7 @@ public class ProfileFragment extends Fragment {
         toolbar = getActivity().findViewById(R.id.toolbar);
         settingsButton = getActivity().findViewById(R.id.bar_layout_settingsButton);
         profile_image = view.findViewById(R.id.profile_circularImage);
+        listView = view.findViewById(R.id.profile_listView);
 
         preferences = getActivity().getSharedPreferences("hasanhakan.gameseum", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -93,14 +94,26 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        listView = view.findViewById(R.id.profile_listView);
         adapter = new ProfileListAdapter(titles, count, getContext());
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(titles[i], "working");
+                switch (titles[i]) {
+                    case "Played List":
+                        break;
+                    case "Wishlist":
+                        break;
+                    case "Reviews":
+                        break;
+                    case "Game List":
+                        GameListFragment gameListFragment = new GameListFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, gameListFragment).commit();
+                        break;
+                    case "Friends":
+                        break;
+                }
             }
         });
 

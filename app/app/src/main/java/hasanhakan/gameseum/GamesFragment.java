@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 public class GamesFragment extends Fragment {
 
     private Toolbar toolbar;
+    private GridView gridView;
+    private GamesAdapter gamesAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,5 +38,10 @@ public class GamesFragment extends Fragment {
             }
         }
         toolbar.findViewById(R.id.games_bar).setVisibility(View.VISIBLE);
+
+        gridView = view.findViewById(R.id.games_gridView);
+        gamesAdapter = new GamesAdapter(Game.getData(""), getContext());
+        gridView.setAdapter(gamesAdapter);
+        gridView.setOverScrollMode(GridView.OVER_SCROLL_NEVER);
     }
 }

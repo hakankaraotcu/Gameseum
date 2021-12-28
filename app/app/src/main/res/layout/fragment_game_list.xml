@@ -3,14 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AvatarFragment">
+    tools:context=".GameListFragment">
 
-    <GridView
-        android:id="@+id/avatar_gridView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_allGameLists"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnWidth="120dp"
-        android:numColumns="3"
-        android:stretchMode="spacingWidthUniform"
-        android:verticalSpacing="3dp" />
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

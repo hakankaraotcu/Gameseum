@@ -1,36 +1,38 @@
 package hasanhakan.gameseum;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class AvatarFragment extends Fragment {
+public class GameListFragment extends Fragment {
 
+    private GameListAdapter gameListAdapter;
+    private LinearLayout mainLayout, linearLayout;
+    private View line;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView recyclerView;
+    private ImageAdapter imageAdapter;
+    private CreateListFragment createListFragment;
     private Toolbar toolbar;
     private ImageButton backButton, searchButton, createButton;
-    private TextView pageName;
+    private TextView pageName, listName;
 
-    private ProfileFragment profileFragment;
-
-    private GridView gridView;
-    private AvatarAdapter avatarAdapter;
-    private final int[] images = {R.drawable.avatar1, R.drawable.avatar2, R.drawable.avatar3, R.drawable.avatar4, R.drawable.avatar5,
-            R.drawable.avatar6, R.drawable.avatar7, R.drawable.avatar8, R.drawable.avatar9, R.drawable.avatar10,
-            R.drawable.avatar11, R.drawable.avatar12, R.drawable.avatar13, R.drawable.avatar14, R.drawable.avatar15,
-            R.drawable.avatar16, R.drawable.avatar17, R.drawable.avatar18, R.drawable.avatar19, R.drawable.avatar20,
-            R.drawable.avatar21, R.drawable.avatar22, R.drawable.avatar23, R.drawable.avatar24};
+    ProfileFragment profileFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,13 +43,21 @@ public class AvatarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_avatar, container, false);
+        View view = inflater.inflate(R.layout.fragment_game_list, container, false);
+        createListFragment = new CreateListFragment();
         toolbar = getActivity().findViewById(R.id.toolbar);
         backButton = getActivity().findViewById(R.id.bar_layout_backButton);
         searchButton = getActivity().findViewById(R.id.bar_layout_searchButton);
         createButton = getActivity().findViewById(R.id.bar_layout_createButton);
         pageName = getActivity().findViewById(R.id.pageName);
+        recyclerView = view.findViewById(R.id.recyclerView_allGameLists);
 
+        gameListAdapter = new GameListAdapter(GameLists.getData(), getContext());
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(gameListAdapter);
+        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         return view;
     }
 
@@ -61,9 +71,9 @@ public class AvatarFragment extends Fragment {
             }
         }
         toolbar.findViewById(R.id.subPage_bar).setVisibility(View.VISIBLE);
-        pageName.setText("Avatar");
-        searchButton.setVisibility(View.GONE);
-        createButton.setVisibility(View.GONE);
+        pageName.setText("Game List");
+        searchButton.setVisibility(View.VISIBLE);
+        createButton.setVisibility(View.VISIBLE);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,18 +81,13 @@ public class AvatarFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, profileFragment).commit();
             }
         });
-        gridView = view.findViewById(R.id.avatar_gridView);
-        avatarAdapter = new AvatarAdapter(images, getContext());
-        gridView.setAdapter(avatarAdapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle args = new Bundle();
-                args.putInt("image", images[i]);
-                profileFragment.setArguments(args);
-                getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, profileFragment).commit();
+            public void onClick(View view) {
+                createListFragment.show(getParentFragmentManager(), "tag");
             }
         });
+
     }
 }
