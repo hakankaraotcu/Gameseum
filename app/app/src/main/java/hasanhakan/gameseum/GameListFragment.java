@@ -29,10 +29,10 @@ public class GameListFragment extends Fragment {
     private ImageAdapter imageAdapter;
     private CreateListFragment createListFragment;
     private Toolbar toolbar;
-    private ImageButton backButton, searchButton, createButton;
+    private ImageButton backButton, createButton;
     private TextView pageName, listName;
 
-    ProfileFragment profileFragment;
+    private ProfileFragment profileFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,8 @@ public class GameListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_game_list, container, false);
         createListFragment = new CreateListFragment();
         toolbar = getActivity().findViewById(R.id.toolbar);
-        backButton = getActivity().findViewById(R.id.bar_layout_backButton);
-        searchButton = getActivity().findViewById(R.id.bar_layout_searchButton);
-        createButton = getActivity().findViewById(R.id.bar_layout_createButton);
+        backButton = getActivity().findViewById(R.id.bar_layout_gameList_backButton);
+        createButton = getActivity().findViewById(R.id.bar_layout_gameList_createButton);
         pageName = getActivity().findViewById(R.id.pageName);
         recyclerView = view.findViewById(R.id.recyclerView_allGameLists);
 
@@ -70,10 +69,7 @@ public class GameListFragment extends Fragment {
                 toolbar.getChildAt(i).setVisibility(View.GONE);
             }
         }
-        toolbar.findViewById(R.id.subPage_bar).setVisibility(View.VISIBLE);
-        pageName.setText("Game List");
-        searchButton.setVisibility(View.VISIBLE);
-        createButton.setVisibility(View.VISIBLE);
+        toolbar.findViewById(R.id.gameList_bar).setVisibility(View.VISIBLE);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +81,7 @@ public class GameListFragment extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createListFragment.show(getParentFragmentManager(), "tag");
+                createListFragment.show(getParentFragmentManager(), "create");
             }
         });
 

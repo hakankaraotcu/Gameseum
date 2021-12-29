@@ -75,10 +75,10 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_settings"
-            android:visibility="visible" />
+            android:src="@drawable/ic_settings" />
 
         <TextView
+            android:id="@+id/profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -91,7 +91,33 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/subPage_bar"
+        android:id="@+id/avatar_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/awesomepossumshinedemo"
+            android:paddingRight="15dp"
+            android:text="Avatar"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_avatar_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/playedListAndWishList_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:visibility="gone">
@@ -108,35 +134,78 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/bar_layout_searchButton"
+            android:id="@+id/bar_layout_playedListAndWishList_searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_search"
-            android:visibility="gone" />
+            android:src="@drawable/ic_search" />
 
         <ImageButton
-            android:id="@+id/bar_layout_createButton"
+            android:id="@+id/bar_layout_playedListAndWishList_sliderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="50dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_create"
-            android:visibility="gone" />
+            android:src="@drawable/ic_slider" />
 
         <ImageButton
-            android:id="@+id/bar_layout_backButton"
+            android:id="@+id/bar_layout_playedListAndWishList_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_back"
-            android:visibility="visible" />
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/gameList_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/awesomepossumshinedemo"
+            android:paddingRight="15dp"
+            android:text="Game Lists"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_gameList_searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_search" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_gameList_createButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_create" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_gameList_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
     </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>

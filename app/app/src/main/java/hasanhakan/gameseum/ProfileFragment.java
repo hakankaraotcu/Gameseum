@@ -102,8 +102,12 @@ public class ProfileFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (titles[i]) {
                     case "Played List":
+                        PlayedListFragment playedListFragment = new PlayedListFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, playedListFragment).commit();
                         break;
                     case "Wishlist":
+                        WishListFragment wishListFragment = new WishListFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout,wishListFragment).commit();
                         break;
                     case "Reviews":
                         break;

@@ -14,13 +14,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 public class AvatarFragment extends Fragment {
 
     private Toolbar toolbar;
-    private ImageButton backButton, searchButton, createButton;
-    private TextView pageName;
+    private ImageButton backButton;
 
     private ProfileFragment profileFragment;
 
@@ -43,10 +41,7 @@ public class AvatarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_avatar, container, false);
         toolbar = getActivity().findViewById(R.id.toolbar);
-        backButton = getActivity().findViewById(R.id.bar_layout_backButton);
-        searchButton = getActivity().findViewById(R.id.bar_layout_searchButton);
-        createButton = getActivity().findViewById(R.id.bar_layout_createButton);
-        pageName = getActivity().findViewById(R.id.pageName);
+        backButton = getActivity().findViewById(R.id.bar_layout_avatar_backButton);
 
         return view;
     }
@@ -60,10 +55,7 @@ public class AvatarFragment extends Fragment {
                 toolbar.getChildAt(i).setVisibility(View.GONE);
             }
         }
-        toolbar.findViewById(R.id.subPage_bar).setVisibility(View.VISIBLE);
-        pageName.setText("Avatar");
-        searchButton.setVisibility(View.GONE);
-        createButton.setVisibility(View.GONE);
+        toolbar.findViewById(R.id.avatar_bar).setVisibility(View.VISIBLE);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
