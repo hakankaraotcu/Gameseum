@@ -53,14 +53,15 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextUsername_Register"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername_Register" />
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail_Register"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail_Register" />
 
     <EditText
         android:id="@+id/editTextConfirmPassword_Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
@@ -79,12 +80,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextName_Register" />
 
     <EditText
-        android:id="@+id/editTextUsername_Register"
+        android:id="@+id/editTextEmail_Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="92dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="E-mail"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextSurname_Register"
         app:layout_constraintTop_toBottomOf="@+id/editTextSurname_Register" />
@@ -93,7 +94,8 @@
         android:id="@+id/checkBoxTerms_Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
         android:text="Accept Terms of Privacy"
         app:layout_constraintStart_toStartOf="@+id/editTextConfirmPassword_Register"
         app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword_Register" />
@@ -102,10 +104,23 @@
         android:id="@+id/btnRegister_Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="4dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextConfirmPassword_Register"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="@+id/editTextConfirmPassword_Register" />
+
+    <EditText
+        android:id="@+id/editTexUserName_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail_Register"
+        app:layout_constraintEnd_toEndOf="@+id/editTextSurname_Register"
+        app:layout_constraintStart_toStartOf="@+id/editTextSurname_Register"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSurname_Register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

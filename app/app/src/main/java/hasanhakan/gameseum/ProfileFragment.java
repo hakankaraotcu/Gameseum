@@ -1,6 +1,7 @@
 package hasanhakan.gameseum;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,13 +21,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 public class ProfileFragment extends Fragment {
+
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+    private TextView username_profile;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -52,6 +67,7 @@ public class ProfileFragment extends Fragment {
         settingsButton = getActivity().findViewById(R.id.bar_layout_settingsButton);
         profile_image = view.findViewById(R.id.profile_circularImage);
         listView = view.findViewById(R.id.profile_listView);
+        username_profile = getActivity().findViewById(R.id.username_profile);
 
         preferences = getActivity().getSharedPreferences("hasanhakan.gameseum", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -63,6 +79,31 @@ public class ProfileFragment extends Fragment {
             profile_image.setImageResource(image);
             getArguments().clear();
         }
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        userID = user.getUid();
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                if(userProfile != null) {
+                    String sName = userProfile.name;
+                    String sSurname = userProfile.surname;
+                    String sUsername = userProfile.username;
+                    String sEmail = userProfile.email;
+
+                    username_profile.setText(sUsername);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         return view;
     }
 
@@ -156,7 +197,9 @@ public class ProfileFragment extends Fragment {
                         }
                         break;
                     case R.id.settings_logOut:
-                        Log.d("logout", "4");
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                        getActivity().finish();
                         break;
                 }
                 return false;
