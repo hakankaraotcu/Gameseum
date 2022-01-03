@@ -17,10 +17,10 @@
             <ImageButton
                 android:id="@+id/slider_close"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:paddingTop="10dp"
+                android:layout_centerHorizontal="true"
                 android:paddingRight="10dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_close" />
@@ -33,7 +33,7 @@
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="Game Name"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 

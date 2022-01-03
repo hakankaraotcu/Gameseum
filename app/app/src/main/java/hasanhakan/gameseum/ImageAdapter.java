@@ -1,6 +1,7 @@
 package hasanhakan.gameseum;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,16 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
-    private ArrayList<Game> games;
+    private List<Game> games;
     private Context context;
 
-    public ImageAdapter(ArrayList<Game> games, Context context) {
+    public ImageAdapter(List<Game> games, Context context) {
         this.games = games;
         this.context = context;
     }
@@ -29,8 +33,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        //Glide.with(holder.itemView.getContext()).load(games.get(position).getUrl()).into(holder.imageView);
         Game game = games.get(position);
         holder.setData(game);
+
     }
 
     @Override
@@ -47,7 +53,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         }
 
         public void setData(Game game) {
-            this.imageView.setImageResource(game.getImage());
+            Glide.with(itemView.getContext()).load(game.getUrl()).into(imageView);
         }
     }
 }

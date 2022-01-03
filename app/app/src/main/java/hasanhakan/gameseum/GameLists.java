@@ -22,7 +22,7 @@ public class GameLists {
 
     static public ArrayList<GameLists> getData() {
         ArrayList<GameLists> titleLists = new ArrayList<>();
-        String[] titles = {"Horror", "Action", "Adventure", "Sport", "RPG", "Pixel", "JRPG", "Strategy", "Simulation"};
+        String[] titles = {"Horror", "Action", "Adventure"};
 
         for (int i = 0; i < titles.length; i++) {
             GameLists gamelist = new GameLists();

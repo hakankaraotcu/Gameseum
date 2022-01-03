@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    tools:context=".GameFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/gameName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Name"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/gamePage_image"
+            android:layout_width="128dp"
+            android:layout_height="160dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/gamePage_image"
+            android:text="Developer:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/developer_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/developer"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/releaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/developer_description"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/gamePage_image"
+            android:text="Release Date:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/releaseDate_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/developer_description"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/releaseDate"
+            android:text="Dec 10, 2020"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/releaseDate_description"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/gamePage_image"
+            android:text="Genre:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/genres_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/releaseDate_description"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/genres"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/metacritic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/genres_description"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/gamePage_image"
+            android:text="Metacritic:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/metacritic_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/genres_description"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/metacritic"
+            android:textColor="@color/textColor" />
+
+        <TextView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/metacritic_description"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/gamePage_image"
+            android:text="Rate:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <!-- add style to ratingbar to change the size-->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/metacritic_description"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/rate"
+            android:rating="2.5"
+            android:stepSize="0.5" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:id="@+id/played_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_played"
+            app:tint="@color/red" />
+
+        <TextView
+            android:id="@+id/played_description"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/played_button"
+            android:gravity="center"
+            android:text="Play" />
+
+        <ImageButton
+            android:id="@+id/wishList_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@id/played_button"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_addwishlist"
+            app:tint="@color/red" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wishList_button"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@id/played_button"
+            android:gravity="center"
+            android:text="Wishlist" />
+
+        <ImageButton
+            android:id="@+id/review_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@id/wishList_button"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_addreview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/review_button"
+            android:layout_marginLeft="33dp"
+            android:layout_toRightOf="@id/wishList_button"
+            android:gravity="center"
+            android:text="Add a review" />
+
+    </RelativeLayout>
+
+</LinearLayout>

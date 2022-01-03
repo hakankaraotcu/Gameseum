@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        holder.setData(games.get(position));
+        Game game = games.get(position);
+        holder.setData(game);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         }
 
         void setData(Game game) {
-            imageView.setImageResource(game.getImage());
+            Glide.with(itemView.getContext()).load(game.getUrl()).into(imageView);
         }
     }
 }

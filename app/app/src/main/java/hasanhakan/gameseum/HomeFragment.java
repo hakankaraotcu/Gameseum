@@ -1,5 +1,6 @@
 package hasanhakan.gameseum;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
@@ -20,6 +34,9 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerViewPopular, recyclerViewNewReleases;
     private ImageAdapter imageAdapter;
     private Toolbar toolbar;
+    private StorageReference listRef;
+    private ArrayList<Game> popularGames = new ArrayList<>();
+    private ArrayList<Game> newReleasedGames = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,18 +57,89 @@ public class HomeFragment extends Fragment {
             }
         }
 
+        listRef = FirebaseStorage.getInstance().getReference();
+
         recyclerViewPopular = view.findViewById(R.id.recyclerView_popularGames);
-        imageAdapter = new ImageAdapter(Game.getData("Popular"), getContext());
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopular.setLayoutManager(linearLayoutManager);
-        recyclerViewPopular.setAdapter(imageAdapter);
-        recyclerViewPopular.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        checkName("Popular Games");
 
         recyclerViewNewReleases = view.findViewById(R.id.recyclerView_newReleasesGames);
-        imageAdapter = new ImageAdapter(Game.getData("New Releases"), getContext());
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewNewReleases.setLayoutManager(linearLayoutManager);
-        recyclerViewNewReleases.setAdapter(imageAdapter);
-        recyclerViewNewReleases.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        checkName("New Released Games");
+    }
+
+    public void checkName(String tag) {
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        if (tag == "Popular Games") {
+            CollectionReference ref = firestore.collection("new_released_games");
+            ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String formattedName = ((String) document.getData().get("name")).replaceAll(" ", "-").replaceAll(":", "").replaceAll("'", "").toLowerCase();
+                        String name = (String) document.getData().get("name");
+                        String dev = (String) document.getData().get("dev");
+                        String genre = (String) document.getData().get("genre");
+                        Long metacritic = (Long) document.getData().get("point");
+                        Game game = new Game();
+                        game.setName(name);
+                        game.setDev(dev);
+                        game.setGenre(genre);
+                        game.setMetacritic(metacritic);
+                        popularGames.add(game);
+                        download("Popular Games", game, formattedName);
+                    }
+                }
+            });
+        } else if (tag == "New Released Games") {
+            CollectionReference ref = firestore.collection("new_released_games");
+            ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String formattedName = ((String) document.getData().get("name")).replaceAll(" ", "-").replaceAll(":", "").replaceAll("'", "").toLowerCase();
+                        String name = (String) document.getData().get("name");
+                        String dev = (String) document.getData().get("dev");
+                        String genre = (String) document.getData().get("genre");
+                        Long metacritic = (Long) document.getData().get("point");
+                        Game game = new Game();
+                        game.setName(name);
+                        game.setDev(dev);
+                        game.setGenre(genre);
+                        game.setMetacritic(metacritic);
+                        newReleasedGames.add(game);
+                        download("New Released Games", game, formattedName);
+                    }
+                }
+            });
+        }
+    }
+
+    public void download(String tag, Game game, String gameName) {
+        if (tag == "Popular Games") {
+            StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+            imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    game.setUrl(uri.toString());
+                    imageAdapter = new ImageAdapter(popularGames.subList(0,10), getContext());
+                    recyclerViewPopular.setAdapter(imageAdapter);
+                    recyclerViewPopular.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+                }
+            });
+        } else if (tag == "New Released Games") {
+            StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+            imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    game.setUrl(uri.toString());
+                    imageAdapter = new ImageAdapter(newReleasedGames.subList(0,10), getContext());
+                    recyclerViewNewReleases.setAdapter(imageAdapter);
+                    recyclerViewNewReleases.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+                }
+            });
+        }
     }
 }

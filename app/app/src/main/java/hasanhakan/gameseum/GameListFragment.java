@@ -51,12 +51,6 @@ public class GameListFragment extends Fragment {
         pageName = getActivity().findViewById(R.id.pageName);
         recyclerView = view.findViewById(R.id.recyclerView_allGameLists);
 
-        gameListAdapter = new GameListAdapter(GameLists.getData(), getContext());
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(gameListAdapter);
-        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         return view;
     }
 
@@ -84,6 +78,13 @@ public class GameListFragment extends Fragment {
                 createListFragment.show(getParentFragmentManager(), "create");
             }
         });
+
+        gameListAdapter = new GameListAdapter(GameLists.getData(), getContext());
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(gameListAdapter);
+        recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
     }
 }

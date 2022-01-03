@@ -1,6 +1,7 @@
 package hasanhakan.gameseum;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -43,7 +46,9 @@ public class GamesAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.game_image,null);
         imageView = view.findViewById(R.id.game_image);
-        imageView.setImageResource(games.get(position).getImage());
+        Glide.with(view.getContext()).load(games.get(position).getUrl()).into(imageView);
+
+        //imageView.setImageResource(games.get(position).getImage());
         return view;
     }
 }

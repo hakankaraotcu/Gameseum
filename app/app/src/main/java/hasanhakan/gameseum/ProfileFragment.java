@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
         settingsButton = getActivity().findViewById(R.id.bar_layout_settingsButton);
         profile_image = view.findViewById(R.id.profile_circularImage);
         listView = view.findViewById(R.id.profile_listView);
-        username_profile = getActivity().findViewById(R.id.username_profile);
+        username_profile = getActivity().findViewById(R.id.profile_username);
 
         preferences = getActivity().getSharedPreferences("hasanhakan.gameseum", Context.MODE_PRIVATE);
         editor = preferences.edit();
@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userProfile = snapshot.getValue(User.class);
-                if(userProfile != null) {
+                if (userProfile != null) {
                     String sName = userProfile.name;
                     String sSurname = userProfile.surname;
                     String sUsername = userProfile.username;
@@ -148,7 +148,7 @@ public class ProfileFragment extends Fragment {
                         break;
                     case "Wishlist":
                         WishListFragment wishListFragment = new WishListFragment();
-                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout,wishListFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, wishListFragment).commit();
                         break;
                     case "Reviews":
                         break;
@@ -179,7 +179,7 @@ public class ProfileFragment extends Fragment {
                 switch (item.getItemId()) {
                     case R.id.settings_avatar:
                         AvatarFragment avatarFragment = new AvatarFragment();
-                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, avatarFragment).addToBackStack(null).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, avatarFragment).commit();
                         break;
                     case R.id.settings_password:
                         Log.d("password", "2");
