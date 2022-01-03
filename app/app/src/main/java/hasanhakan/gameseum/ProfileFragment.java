@@ -54,8 +54,8 @@ public class ProfileFragment extends Fragment {
     private int image;
     private ListView listView;
     private ProfileListAdapter adapter;
-    private String[] titles = {"Played List", "Wishlist", "Reviews", "Game List", "Friends"};
-    private int[] count = {0, 0, 0, 0, 0};
+    private String[] titles = {"User Info", "Played List", "Wishlist", "Reviews", "Game List", "Friends"};
+    private int[] count = {0, 0, 0, 0, 0, 0};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,6 +142,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (titles[i]) {
+                    case "User Info":
+                        UserInfoFragment userInfoFragment = new UserInfoFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, userInfoFragment).commit();
+                        break;
                     case "Played List":
                         PlayedListFragment playedListFragment = new PlayedListFragment();
                         getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, playedListFragment).commit();
@@ -183,6 +187,8 @@ public class ProfileFragment extends Fragment {
                         break;
                     case R.id.settings_password:
                         Log.d("password", "2");
+                        ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, changePasswordFragment).commit();
                         break;
                     case R.id.settings_darkMode:
                         switch_theme.setChecked(!switch_theme.isChecked());
