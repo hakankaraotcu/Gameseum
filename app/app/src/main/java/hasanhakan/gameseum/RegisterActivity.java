@@ -81,8 +81,8 @@ public class RegisterActivity extends AppCompatActivity {
             email.requestFocus();
             return;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(sUserName).matches()){
-            email.setError("Please provide a valid username");
+        if(!Patterns.EMAIL_ADDRESS.matcher(sEmail).matches()){
+            email.setError("Please provide a valid email");
             email.requestFocus();
             return;
         }

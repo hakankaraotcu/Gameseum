@@ -42,7 +42,6 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference reference;
     private String userID;
     private TextView username_profile;
-
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -54,8 +53,8 @@ public class ProfileFragment extends Fragment {
     private int image;
     private ListView listView;
     private ProfileListAdapter adapter;
-    private String[] titles = {"User Info", "Played List", "Wishlist", "Reviews", "Game List", "Friends"};
-    private int[] count = {0, 0, 0, 0, 0, 0};
+    private String[] titles = {"User Info", "Played List", "Wishlist", "Reviews", "Game List", "Friends" , "Thread Example"};
+    private int[] count = {0, 0, 0, 0, 0, 0, 0};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +101,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
 
         return view;
     }
@@ -161,6 +159,10 @@ public class ProfileFragment extends Fragment {
                         getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, gameListFragment).commit();
                         break;
                     case "Friends":
+                        break;
+                    case "Thread Example":
+                        ThreadExampleFragment threadExampleFragment = new ThreadExampleFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, threadExampleFragment).commit();
                         break;
                 }
             }

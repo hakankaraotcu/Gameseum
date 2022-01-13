@@ -32,6 +32,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameLi
     private ImageAdapter imageAdapter;
     private StorageReference listRef;
     private ArrayList<Game> games = new ArrayList<>();
+    private OnItemClickListener listener;
 
     public GameListAdapter(ArrayList<GameLists> listNames, Context context) {
         this.listNames = listNames;
@@ -49,11 +50,6 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameLi
     public void onBindViewHolder(@NonNull GameListViewHolder holder, int position) {
         GameLists gameList = listNames.get(position);
         holder.setData(gameList);
-        /*imageAdapter = new ImageAdapter(games, context);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        holder.recyclerView.setLayoutManager(layoutManager);
-        holder.recyclerView.setAdapter(imageAdapter);
-        holder.recyclerView.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);*/
         listRef = FirebaseStorage.getInstance().getReference();
         linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
@@ -73,11 +69,30 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameLi
             super(itemView);
             listName = itemView.findViewById(R.id.gameListName);
             recyclerView = itemView.findViewById(R.id.recyclerView_gameList);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAbsoluteAdapterPosition();
+
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(games, listNames.get(position));
+                    }
+                }
+            });
         }
 
         public void setData(GameLists gameList) {
             this.listName.setText(gameList.getListName());
         }
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(ArrayList<Game> games, GameLists listName);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 
     public void checkName(@NonNull GameListViewHolder holder) {
@@ -105,7 +120,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.GameLi
     }
 
     public void download(@NonNull GameListViewHolder holder, Game game, String gameName) {
-        StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+        StorageReference imgReference = listRef.child("new_released_games/" + gameName + " .jpg");
         imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

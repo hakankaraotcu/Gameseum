@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -35,8 +37,8 @@ public class HomeFragment extends Fragment {
     private ImageAdapter imageAdapter;
     private Toolbar toolbar;
     private StorageReference listRef;
-    private ArrayList<Game> popularGames = new ArrayList<>();
-    private ArrayList<Game> newReleasedGames = new ArrayList<>();
+    private List<Game> popularGames = new ArrayList<>();
+    private List<Game> newReleasedGames = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,82 +64,81 @@ public class HomeFragment extends Fragment {
         recyclerViewPopular = view.findViewById(R.id.recyclerView_popularGames);
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopular.setLayoutManager(linearLayoutManager);
-        checkName("Popular Games");
+        checkName("popular_games");
 
         recyclerViewNewReleases = view.findViewById(R.id.recyclerView_newReleasesGames);
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewNewReleases.setLayoutManager(linearLayoutManager);
-        checkName("New Released Games");
+        checkName("new_released_games");
     }
 
     public void checkName(String tag) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        if (tag == "Popular Games") {
-            CollectionReference ref = firestore.collection("new_released_games");
-            ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String formattedName = ((String) document.getData().get("name")).replaceAll(" ", "-").replaceAll(":", "").replaceAll("'", "").toLowerCase();
-                        String name = (String) document.getData().get("name");
-                        String dev = (String) document.getData().get("dev");
-                        String genre = (String) document.getData().get("genre");
-                        Long metacritic = (Long) document.getData().get("point");
-                        Game game = new Game();
-                        game.setName(name);
-                        game.setDev(dev);
-                        game.setGenre(genre);
-                        game.setMetacritic(metacritic);
+        CollectionReference ref = firestore.collection(tag);
+        ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String formattedName = ((String) document.getData().get("name")).replaceAll(" ", "-").replaceAll(":", "").replaceAll("'", "").toLowerCase();
+                    String name = (String) document.getData().get("name");
+                    String dev = (String) document.getData().get("dev");
+                    String genre = (String) document.getData().get("genre");
+                    Long metacritic = (Long) document.getData().get("point");
+                    Game game = new Game();
+                    game.setName(name);
+                    game.setDev(dev);
+                    game.setGenre(genre);
+                    game.setMetacritic(metacritic);
+                    if(tag.equals("popular_games")) {
                         popularGames.add(game);
-                        download("Popular Games", game, formattedName);
                     }
-                }
-            });
-        } else if (tag == "New Released Games") {
-            CollectionReference ref = firestore.collection("new_released_games");
-            ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String formattedName = ((String) document.getData().get("name")).replaceAll(" ", "-").replaceAll(":", "").replaceAll("'", "").toLowerCase();
-                        String name = (String) document.getData().get("name");
-                        String dev = (String) document.getData().get("dev");
-                        String genre = (String) document.getData().get("genre");
-                        Long metacritic = (Long) document.getData().get("point");
-                        Game game = new Game();
-                        game.setName(name);
-                        game.setDev(dev);
-                        game.setGenre(genre);
-                        game.setMetacritic(metacritic);
+                    else {
                         newReleasedGames.add(game);
-                        download("New Released Games", game, formattedName);
                     }
-                }
-            });
-        }
+                    download(tag, game, formattedName);
+                    }
+            }
+        });
     }
 
     public void download(String tag, Game game, String gameName) {
-        if (tag == "Popular Games") {
-            StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+        if (tag == "popular_games") {
+            tag = "best_games";
+            StorageReference imgReference = listRef.child(tag + "/"+ gameName + " .jpg");
             imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
                     game.setUrl(uri.toString());
-                    imageAdapter = new ImageAdapter(popularGames.subList(0,10), getContext());
+                    imageAdapter = new ImageAdapter(popularGames.subList(0, 10), getContext());
                     recyclerViewPopular.setAdapter(imageAdapter);
                     recyclerViewPopular.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+                    imageAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick() {
+                            PopularGamesFragment popularGamesFragment = new PopularGamesFragment(popularGames);
+                            getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, popularGamesFragment).commit();
+                        }
+                    });
                 }
             });
-        } else if (tag == "New Released Games") {
-            StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+        } else {
+            StorageReference imgReference = listRef.child(tag + "/" + gameName + " .jpg");
             imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
                     game.setUrl(uri.toString());
-                    imageAdapter = new ImageAdapter(newReleasedGames.subList(0,10), getContext());
+                    imageAdapter = new ImageAdapter(newReleasedGames.subList(0, 10), getContext());
                     recyclerViewNewReleases.setAdapter(imageAdapter);
                     recyclerViewNewReleases.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+                    imageAdapter.setOnItemClickListener(new ImageAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick() {
+                            NewReleasedGamesFragment newReleasedGamesFragment = new NewReleasedGamesFragment(newReleasedGames);
+                            getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, newReleasedGamesFragment).commit();
+                        }
+                    });
                 }
             });
         }

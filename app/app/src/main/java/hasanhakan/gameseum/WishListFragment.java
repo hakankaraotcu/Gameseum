@@ -58,7 +58,7 @@ public class WishListFragment extends Fragment {
         backButton = getActivity().findViewById(R.id.bar_layout_playedListAndWishList_backButton);
         searchButton = getActivity().findViewById(R.id.bar_layout_playedListAndWishList_searchButton);
         sliderButton = getActivity().findViewById(R.id.bar_layout_playedListAndWishList_sliderButton);
-        pageName = getActivity().findViewById(R.id.pageName);
+        pageName = getActivity().findViewById(R.id.playedWishlist_pageName);
         return view;
     }
 
@@ -87,8 +87,6 @@ public class WishListFragment extends Fragment {
                 sliderFragment.show(getParentFragmentManager(), "WishlistSlider");
             }
         });
-
-        //ArrayList<Game> games = Game.getData("");
 
         gridView = view.findViewById(R.id.wishList_gridView);
         gamesAdapter = new GamesAdapter(games, getContext());
@@ -137,7 +135,7 @@ public class WishListFragment extends Fragment {
     }
 
     public void download(Game game, String gameName) {
-        StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+        StorageReference imgReference = listRef.child("new_released_games/" + gameName + " .jpg");
         imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

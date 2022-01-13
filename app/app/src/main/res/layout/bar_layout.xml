@@ -123,7 +123,7 @@
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/pageName"
+            android:id="@+id/playedWishlist_pageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -221,7 +221,68 @@
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_back" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/popularGamesAndNewReleasedGames_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/popularNewReleased_pageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/awesomepossumshinedemo"
+            android:paddingRight="15dp"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_popularGamesAndNewReleasedGames_filterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_filter" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_popularGamesAndNewReleasedGames_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/selectedGameList_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/selectedGameList_pageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/awesomepossumshinedemo"
+            android:paddingRight="15dp"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/bar_layout_selectedGameList_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back" />
     </RelativeLayout>
 
 </androidx.appcompat.widget.Toolbar>

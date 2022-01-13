@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword_Login);
         btnLogin = findViewById(R.id.btnLogin_Login);
         btnRegister = findViewById(R.id.btnRegister_Login);
+        editTextEmail.setText("hasan@gmail.com");
+        editTextPassword.setText("123456");
 
         // What will happen after we click the Register Button
         btnRegister.setOnClickListener(new View.OnClickListener() {

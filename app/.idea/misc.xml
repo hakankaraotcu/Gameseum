@@ -12,6 +12,8 @@
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/ic_slider_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/ic_wishlist.xml" value="0.14479166666666668" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/item_selector.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/progress1.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/drawable/progress3.xml" value="0.2703125" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
@@ -30,11 +32,15 @@
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_item_list_dialog_list_dialog.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_item_list_dialog_list_dialog_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_new_released_games.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_played_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_popular_games.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_reviews.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_selected_game_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_slider.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_thread_example.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/fragment_wish_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/game.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hakan/GitHub/Gameseum/app/app/src/main/res/layout/game_image.xml" value="0.25416666666666665" />

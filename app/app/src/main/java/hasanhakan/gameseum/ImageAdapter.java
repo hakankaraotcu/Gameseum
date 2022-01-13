@@ -18,6 +18,7 @@ import java.util.List;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
     private List<Game> games;
     private Context context;
+    private OnItemClickListener listener;
 
     public ImageAdapter(List<Game> games, Context context) {
         this.games = games;
@@ -33,7 +34,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        //Glide.with(holder.itemView.getContext()).load(games.get(position).getUrl()).into(holder.imageView);
         Game game = games.get(position);
         holder.setData(game);
 
@@ -50,10 +50,30 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.rowImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAbsoluteAdapterPosition();
+
+                    if(listener != null && position != RecyclerView.NO_POSITION){
+                        listener.onItemClick();
+                    }
+                }
+            });
         }
 
         public void setData(Game game) {
             Glide.with(itemView.getContext()).load(game.getUrl()).into(imageView);
         }
+
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 }

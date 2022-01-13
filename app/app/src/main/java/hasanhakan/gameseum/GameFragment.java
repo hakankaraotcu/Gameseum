@@ -16,8 +16,21 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameFragment extends Fragment {
 
@@ -28,6 +41,7 @@ public class GameFragment extends Fragment {
     private Boolean wishlistCheck = false;
     private String name, image, dev, genre;
     private Long metacritic;
+    private Map<String, Object> game = new HashMap<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +69,11 @@ public class GameFragment extends Fragment {
         gameDevTxt.setText(dev);
         gameGenreTxt.setText(genre);
         gameMetacriticTxt.setText(metacritic.toString());
+
+        game.put("name", name);
+        game.put("dev", dev);
+        game.put("genre", genre);
+        game.put("point", metacritic);
 
         return view;
     }
@@ -87,6 +106,18 @@ public class GameFragment extends Fragment {
                         GamesFragment gamesFragment = new GamesFragment();
                         getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, gamesFragment).commit();
                         break;
+                    case "search":
+                        SearchFragment searchFragment = new SearchFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, searchFragment).commit();
+                        break;
+                    case "popular games":
+                        PopularGamesFragment popularGamesFragment = new PopularGamesFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, popularGamesFragment).commit();
+                        break;
+                    case "new released games":
+                        NewReleasedGamesFragment newReleasedGamesFragment  = new NewReleasedGamesFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.page_activity_frameLayout, newReleasedGamesFragment).commit();
+                        break;
                 }
             }
         });
@@ -97,11 +128,53 @@ public class GameFragment extends Fragment {
                 if (playedTxt.getText().toString().equals("Play")) {
                     playedButton.setImageTintList(ColorStateList.valueOf(Color.BLUE));
                     playedTxt.setText("Played");
-                    //add to playedList
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
+                    dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User userProfile = snapshot.getValue(User.class);
+                            FirebaseFirestore.getInstance().collection(userProfile.username)
+                                    .document("playedList").collection(name).document(name).set(game).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getContext(), "Game Added to Played List", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Failed to add to Played List", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 } else if (playedTxt.getText().toString().equals("Played")) {
                     playedButton.setImageTintList(ColorStateList.valueOf(Color.RED));
                     playedTxt.setText("Play");
-                    //remove from playedList
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
+                    dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User userProfile = snapshot.getValue(User.class);
+                            FirebaseFirestore.getInstance().collection(userProfile.username).document("playedList")
+                                    .collection(name).document(name).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getContext(), "Removed game from Played List", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                 }
             }
         });
@@ -113,12 +186,52 @@ public class GameFragment extends Fragment {
                     wishlistButton.setImageResource(R.drawable.ic_removewishlist);
                     wishlistButton.setImageTintList(ColorStateList.valueOf(Color.BLUE));
                     wishlistCheck = !wishlistCheck;
-                    //add to wishlist
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
+                    dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User userProfile = snapshot.getValue(User.class);
+                            FirebaseFirestore.getInstance().collection(userProfile.username)
+                                    .document("wishList").collection(name).document(name).set(game).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getContext(), "Game Added to WishList", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Failed to add to WishList", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 } else {
                     wishlistButton.setImageResource(R.drawable.ic_addwishlist);
                     wishlistButton.setImageTintList(ColorStateList.valueOf(Color.RED));
                     wishlistCheck = !wishlistCheck;
-                    //remove from wishlist
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("Users");
+                    dbRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User userProfile = snapshot.getValue(User.class);
+                            FirebaseFirestore.getInstance().collection(userProfile.username).document("wishList")
+                                    .collection(name).document(name).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getContext(), "Removed game from Wish List", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 }
             }
         });

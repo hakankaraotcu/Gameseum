@@ -62,8 +62,6 @@ public class GamesFragment extends Fragment {
         }
         toolbar.findViewById(R.id.games_bar).setVisibility(View.VISIBLE);
 
-        //ArrayList<Game> games = Game.getData("");
-
         gridView = view.findViewById(R.id.games_gridView);
         gamesAdapter = new GamesAdapter(games, getContext());
 
@@ -88,7 +86,7 @@ public class GamesFragment extends Fragment {
 
     public void checkName() {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-        CollectionReference ref = firestore.collection("new_released_games");
+        CollectionReference ref = firestore.collection("all_games");
         ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -111,7 +109,7 @@ public class GamesFragment extends Fragment {
     }
 
     public void download(Game game, String gameName) {
-        StorageReference imgReference = listRef.child("new_released_games/ " + gameName + " .jpg");
+        StorageReference imgReference = listRef.child("all_games/" + gameName + " .jpg");
         imgReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

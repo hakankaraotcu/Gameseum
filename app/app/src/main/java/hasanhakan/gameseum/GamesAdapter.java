@@ -14,13 +14,14 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GamesAdapter extends BaseAdapter {
     private ImageView imageView;
-    private ArrayList<Game> games;
+    private List<Game> games;
     private Context context;
 
-    public GamesAdapter(ArrayList<Game> games, Context context) {
+    public GamesAdapter(List<Game> games, Context context) {
         this.games = games;
         this.context = context;
     }
@@ -48,7 +49,6 @@ public class GamesAdapter extends BaseAdapter {
         imageView = view.findViewById(R.id.game_image);
         Glide.with(view.getContext()).load(games.get(position).getUrl()).into(imageView);
 
-        //imageView.setImageResource(games.get(position).getImage());
         return view;
     }
 }

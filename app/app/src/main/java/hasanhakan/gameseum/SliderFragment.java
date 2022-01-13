@@ -116,7 +116,6 @@ public class SliderFragment extends BottomSheetDialogFragment {
                     gameNameTxt.setText(playedListFragment.getGames().get(viewPager2.getCurrentItem()).getName());
 
                 }
-                Log.e("gameName",wishListFragment.getGames().get(viewPager2.getCurrentItem()).getName());
                 Log.d("position", String.valueOf(position));
                 float r = 1 - Math.abs(position);
                 page.setScaleY(0.85f + r * 0.15f);
